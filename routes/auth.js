@@ -4,9 +4,13 @@ const {
 } = require('express')
 const router = Router();
 
+
+// dotenv config
+require('dotenv').require()
+
 // mongoose connection
 const mongoose = require('mongoose');
-const dbURI = 'mongodb+srv://test123:YK73pA9SmGoJd2qp@cluster0.pzawe.mongodb.net/PetShop'
+const dbURI = process.env.DB_URI
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
