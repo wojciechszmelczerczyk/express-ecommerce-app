@@ -6,7 +6,7 @@ const router = Router();
 
 
 // dotenv config
-require('dotenv').require()
+require('dotenv').config()
 
 // mongoose connection
 const mongoose = require('mongoose');
