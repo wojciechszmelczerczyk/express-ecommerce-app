@@ -1,7 +1,49 @@
+// User model
 const User = require('../models/User');
 
+// jwt
+const jwt = require('jsonwebtoken');
+
+// handle an errors
+const handleErrors = err => {
+    console.log(err.message, err.code)
+    let errors = {
+        email: '',
+        password: ''
+    }
+
+    // duplicate error code (unique email violation)
+    if (err.code === 11000) {
+        errors.email = 'this email is already registered'
+        return errors;
+    }
+
+    // validation errors
+    if (err.message.includes('user validation failed')) {
+        Object.values(err.errors).forEach(({
+            properties
+        }) => {
+            errors[properties.path] = properties.message;
+        })
+    }
+    return errors;
+}
+
+// create token func
+
+const maxAge = 60 * 60 * 24 * 3; // value of 3 days in seconds
+
+
+const createToken = (id) => {
+    return jwt.sign({
+        id
+    }, 'agatka secret', {
+        expiresIn: maxAge
+    });
+}
+
+
 const path = require('path');
-const bcrypt = require('bcrypt');
 
 const login = (req, res) => {
     res.render(path.join(__dirname, '../public/views', 'login'))
@@ -24,9 +66,21 @@ const signinPost = async (req, res) => {
             email,
             password
         })
-        res.status(201).json(user)
+
+        const token = createToken(user._id); // creating token
+
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            expiresIn: maxAge * 1000
+        })
+        res.status(201).json({
+            user: user._id
+        });
     } catch (err) {
-        res.status(400).send('error, user not created')
+        const errors = handleErrors(err)
+        res.status(400).json({
+            errors
+        });
     }
 
 }
