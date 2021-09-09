@@ -18,7 +18,10 @@ mongoose.connect(dbURI, {
 
 
 router.get('/login', AuthController.login)
-router.get('/signin', AuthController.signin)
+
+router.route('/signin')
+    .get(AuthController.signinGet)
+    .post(AuthController.signinPost)
 
 
 
