@@ -17,13 +17,14 @@ mongoose.connect(dbURI, {
 });
 
 
-router.get('/login', AuthController.login)
+router.route('/login')
+    .get(AuthController.loginGet)
+    .post(AuthController.loginPost)
 
 router.route('/signin')
     .get(AuthController.signinGet)
     .post(AuthController.signinPost)
 
-
-
+router.get('/logout', AuthController.logout)
 
 module.exports = router;

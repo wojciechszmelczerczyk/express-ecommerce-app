@@ -12,6 +12,16 @@ const handleErrors = err => {
         password: ''
     }
 
+    // incorrect email
+    if (err.message === 'incorrect email') {
+        errors.email = 'that email is not registered'
+    }
+
+    // incorrect password
+    if (err.message === 'incorrect password') {
+        errors.password = 'that password is incorrect'
+    }
+
     // duplicate error code (unique email violation)
     if (err.code === 11000) {
         errors.email = 'this email is already registered'
@@ -45,8 +55,35 @@ const createToken = (id) => {
 
 const path = require('path');
 
-const login = (req, res) => {
+const loginGet = (req, res) => {
     res.render(path.join(__dirname, '../public/views', 'login'))
+}
+
+const loginPost = async (req, res) => {
+    // code here
+    const {
+        email,
+        password
+    } = req.body;
+
+    try {
+        const user = await User.login(email, password);
+        const token = createToken(user._id); // creating token
+
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            expiresIn: maxAge * 1000
+        })
+        res.status(200).json({
+            user: user._id
+        });
+    } catch (err) {
+        const errors = handleErrors(err)
+        res.status(400).json({
+            errors
+        });
+    }
+    // take value from login form send with fetch to backend, compare with already existing password, then send jwt if all good
 }
 
 const signinGet = (req, res) => {
@@ -85,9 +122,19 @@ const signinPost = async (req, res) => {
 
 }
 
+const logout = async (req, res) => {
+    res.cookie('jwt', '', {
+        maxAge: 1
+    })
+    res.redirect('/')
+}
+
+
 
 module.exports = {
-    login,
+    loginGet,
+    loginPost,
     signinGet,
-    signinPost
+    signinPost,
+    logout
 }
