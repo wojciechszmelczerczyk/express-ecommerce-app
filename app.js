@@ -8,20 +8,24 @@ const authRoute = require('./routes/auth');
 const cartRoute = require('./routes/cart');
 
 // dotenv config
-
 require('dotenv').config();
 
 // cookie-parser
 const cookieParser = require('cookie-parser');
 
-// body-parser middleware
+// custom middleware for auth
+const {
+    requireAuth,
+    checkUser
+} = require('./middleware/AuthMiddleware');
+
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-
-// cookie middleware
 app.use(cookieParser());
+
 
 // mongoose connection
 const mongoose = require('mongoose');
@@ -48,6 +52,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 // routing
+app.get('*', checkUser) // apply for every get method route
 app.use(indexRoute);
 app.use(authRoute);
 app.use(cartRoute);
