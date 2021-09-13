@@ -96,9 +96,13 @@
 								</ul>
 							</li>
 							<li class="active"><a href="contact">Contact</a></li>
+							<% if(user){ %>
+							<li><a href="/logout">Logout</a></li>
+							<li>Welcome, <%= user.email %></li>
+							<% } else { %>
 							<li><a href="/login">Login</a></li>
 							<li><a href="/signin">Sign In</a></li>
-							<li><a href="/logout">Logout</a></li>
+							<% } %>
 
 						</ul>
 					</div>

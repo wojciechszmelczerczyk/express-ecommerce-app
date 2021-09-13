@@ -10,6 +10,7 @@ const {
 const productSchema = new Schema({
     name: String,
     price: String,
+    description: String
 })
 
 // creating model of User basing on schema

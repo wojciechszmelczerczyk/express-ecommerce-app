@@ -10,7 +10,7 @@ const {
 const router = Router();
 
 
-router.route('/cart').get(requireAuth, CartController.getCartOrder);
+router.route('/cart').get(requireAuth, CartController.getCartOrder).post(CartController.postCartOrder);
 
 
 
