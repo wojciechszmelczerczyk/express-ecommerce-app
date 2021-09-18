@@ -1,5 +1,6 @@
 const Cart = require('../models/Cart'); // Model
 const path = require('path'); // path 
+const colors = require('colors');
 
 
 const getCartOrder = async function (req, res) {
@@ -23,15 +24,25 @@ const postCartOrder = async function (req, res) {
     })
 }
 
+const singleCartOrder = async function (req, res) {
+    const id = req.params.id;
+
+    const test = await Cart.findById({
+        _id: id
+    })
+
+    res.render(path.join(__dirname, '../public/views', 'details'), {
+        test
+    })
+}
+
 
 // deleting product from cart
 const deleteCartOrder = async function (req, res) {
+
     const id = req.params.id;
 
-    console.log(id)
-    Cart.findByIdAndDelete({
-        _id: mongo.ObjectId(id)
-    })
+    await Cart.findByIdAndDelete(id);
 
 }
 
@@ -40,4 +51,5 @@ module.exports = {
     getCartOrder,
     postCartOrder,
     deleteCartOrder,
+    singleCartOrder
 }

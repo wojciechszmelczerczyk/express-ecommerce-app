@@ -1,0 +1,20 @@
+<h2> <%= test.name %></h2>
+<h2> <%= test.price %></h2>
+
+<a class="delete" data-doc="<%= test._id %>" href="/cart">Delete</a>
+
+<script>
+    const trash = document.querySelector('a.delete');
+    trash.addEventListener('click', () => {
+        const endpoint = `/cart/${trash.dataset.doc}`
+
+        fetch(endpoint, {
+                method: 'DELETE',
+
+            }).then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((err) => {
+                console.log(err)
+            })
+    })
+</script>
