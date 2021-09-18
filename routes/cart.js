@@ -12,6 +12,8 @@ const router = Router();
 
 router.route('/cart').get(requireAuth, CartController.getCartOrder).post(CartController.postCartOrder);
 
+// route responsible for deleting product from cart and getting single product from cart 
+router.route('/cart/:id').delete(CartController.deleteCartOrder);
 
 
 module.exports = router;

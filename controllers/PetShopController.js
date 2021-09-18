@@ -1,13 +1,16 @@
 const Product = require('../models/Product'); // Model
+const Cart = require('../models/Cart')
 
 const path = require('path'); // Internal node package for paths
 
 
-//TODO: FIX 
 const getProducts = async function (req, res) {
-    // const productList = await Product.find({}
+    const productList = await Product.find({});
+    const orderNumber = await Cart.countDocuments(); // number of orders in cart
+
     res.render(path.join(__dirname, '../public/views', 'product'), {
-        // productList
+        productList,
+        orderNumber
     })
 }
 
