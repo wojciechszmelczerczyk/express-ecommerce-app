@@ -23,12 +23,16 @@ const userSchema = new Schema({
         lowercase: true,
         validate: [isEmail, 'Please enter a valid email']
     },
+    role: {
+        type: String
+    },
     password: {
         type: String,
         required: [true, 'Please enter an password'],
         minlength: [6, 'Password is to short. Minimum password length is 6 characters']
     }
 })
+
 
 // call a function before saving doc to db
 userSchema.pre('save', async function (next) {

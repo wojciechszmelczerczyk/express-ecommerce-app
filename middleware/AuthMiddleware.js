@@ -9,7 +9,7 @@ const requireAuth = (req, res, next) => {
 
     // check if jwt exists & verify
     if (token) {
-        jwt.verify(token, 'agatka secret', (err, decodedToken) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
             if (err) {
                 res.redirect('/login')
             } else {
@@ -26,7 +26,7 @@ const checkUser = (req, res, next) => {
     const token = req.cookies.jwt
 
     if (token) {
-        jwt.verify(token, 'agatka secret', async (err, decodedToken) => {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
             if (err) {
                 console.log(err.message)
                 res.locals.user = null;

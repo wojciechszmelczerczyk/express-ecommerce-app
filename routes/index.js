@@ -15,7 +15,6 @@ mongoose.connect(dbURI, {
     useUnifiedTopology: true
 });
 
-
 // routing
 router.get('/', PetShopController.getMainPage)
 

@@ -41,7 +41,7 @@ const port = process.env.PORT || 3000;
 
 // listening on port
 app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`);
+    console.log(`Listening at http://localhost:${port}`); // npm start
 });
 
 // ejs engine 

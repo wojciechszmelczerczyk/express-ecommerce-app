@@ -1,13 +1,32 @@
 const Cart = require('../models/Cart'); // Model
+const User = require('../models/User')
 const path = require('path'); // path 
 const colors = require('colors');
-
+const jwt = require('jsonwebtoken'); // jwt
 
 const getCartOrder = async function (req, res) {
-    const cartList = await Cart.find({});
-    res.render(path.join(__dirname, '../public/views', 'cart'), {
-        cartList,
+    const cartList = await Cart.find({}); // collection
+
+    const token = req.cookies.jwt;
+
+    const user = await jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+        return decodedToken;
     })
+
+    const actualUser = await User.findById(user.id);
+
+
+    if (actualUser.role === 'admin') {
+        res.render(path.join(__dirname, '../public/views', 'cart'), {
+            cartList // display every order in cart (admin)
+
+        })
+
+    } else {
+        res.render(path.join(__dirname, '../public/views', 'cart'), {
+            cartList: cartList.filter(elem => elem.user_id === user.id) // display if user_id === recent user
+        })
+    }
 }
 
 const postCartOrder = async function (req, res) {
@@ -16,15 +35,23 @@ const postCartOrder = async function (req, res) {
         price
     } = req.body
 
-    console.log(name, price)
+    // decode token to get recent user id     
+    const token = req.cookies.jwt;
+
+    const user = await jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+        return decodedToken;
+    })
+
 
     Cart.create({
         name,
-        price
+        price,
+        user_id: user.id
     })
 }
 
 const singleCartOrder = async function (req, res) {
+
     const id = req.params.id;
 
     const test = await Cart.findById({

@@ -10,6 +10,8 @@ const {
 const cartSchema = new Schema({
     name: String,
     price: String,
+    user_id: String,
+
 })
 
 // creating model of User basing on schema

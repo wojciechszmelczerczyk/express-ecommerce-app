@@ -47,7 +47,7 @@ const maxAge = 60 * 60 * 24 * 3; // value of 3 days in seconds
 const createToken = (id) => {
     return jwt.sign({
         id
-    }, 'agatka secret', {
+    }, process.env.JWT_SECRET, {
         expiresIn: maxAge
     });
 }
@@ -60,7 +60,7 @@ const loginGet = (req, res) => {
 }
 
 const loginPost = async (req, res) => {
-    // code here
+
     const {
         email,
         password
@@ -93,15 +93,25 @@ const signinGet = (req, res) => {
 
 const signinPost = async (req, res) => {
     // extract email and password from request to seprate variables
-    const {
+    let {
         email,
-        password
+        password,
+        role
     } = req.body;
+
+    let re = new RegExp("^admin@\\w+", "i");
+    if (re.test(email)) {
+        role = 'admin';
+    } else {
+        role = 'guest'
+    }
+
 
     try {
         const user = await User.create({
             email,
-            password
+            password,
+            role
         })
 
         const token = createToken(user._id); // creating token
