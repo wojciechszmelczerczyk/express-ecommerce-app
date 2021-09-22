@@ -26,7 +26,21 @@ const getProducts = async function (req, res) {
 }
 
 const getMainPage = async function (req, res) {
-    res.render(path.join(__dirname, '../public/views', 'index'));
+    const token = req.cookies.jwt; // token
+
+    const user = await jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+        return decodedToken;
+    }) // get user id from jwt decomposition
+
+    const productList = await Product.find({});
+    const orderNumber = await Cart.countDocuments({
+        user_id: user.id
+    });
+
+    res.render(path.join(__dirname, '../public/views', 'index'), {
+        productList,
+        orderNumber
+    });
 }
 
 const getAboutSubpage = async function (req, res) {
