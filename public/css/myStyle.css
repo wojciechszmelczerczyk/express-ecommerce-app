@@ -1,0 +1,215 @@
+/* font import */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+/* cart orders */
+.order {
+  background-color: #d1c286;
+  list-style: none;
+  margin-bottom: 3em;
+  line-height: 60px;
+}
+
+.order > a {
+  text-decoration: none;
+  color: white;
+  font-size: 35px;
+  font-family: "Montserrat";
+}
+
+/* pagination button */
+
+.pagination {
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.pagination > li {
+  display: inline;
+}
+
+.pagination > li > a {
+  text-decoration: none;
+  float: left;
+  padding: 10px 20px;
+  line-height: 1.42857;
+  text-decoration: none;
+  color: #337ab7;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-left: -1px;
+}
+
+/* single order */
+.singleOrder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 60vw;
+  background-color: #d1c286;
+}
+
+.singleOrder > * {
+  position: absolute;
+  color: white;
+}
+
+.singleOrder > h1:first-child {
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+}
+
+.singleOrder > h1:nth-child(2) {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+}
+
+.singleOrder > a {
+  text-decoration: none;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  font-size: 30px;
+}
+
+/* signup form */
+.signin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 60vw;
+  background-color: #d1c286;
+}
+
+.signin > * {
+  position: absolute;
+  color: white;
+}
+
+.signin > .title {
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, -5%);
+}
+
+.signin > input {
+  color: black;
+}
+.signin > input:nth-of-type(1) {
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  font-size: 35px;
+}
+
+.signin > input:nth-of-type(3) {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  font-size: 35px;
+}
+
+.signin > button {
+  text-decoration: none;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  cursor: pointer;
+  font-size: 30px;
+  color: grey;
+  border-style: none;
+  border-color: grey;
+  background-color: white;
+}
+
+.signin > div {
+  position: absolute;
+  color: white;
+}
+
+.signin > div:nth-of-type(1) {
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -32%);
+}
+
+.signin > div:nth-of-type(2) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* login form */
+.login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 60vw;
+  background-color: #d1c286;
+}
+
+.login > * {
+  position: absolute;
+  color: white;
+}
+
+.login > .title {
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, -5%);
+}
+
+.login > input {
+  color: black;
+}
+.login > input:nth-of-type(1) {
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  font-size: 35px;
+}
+
+.login > input:nth-of-type(2) {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  font-size: 35px;
+}
+
+.login > button {
+  text-decoration: none;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  cursor: pointer;
+  font-size: 30px;
+  color: grey;
+  border-style: none;
+  border-color: grey;
+  background-color: white;
+}
+
+.login > div {
+  position: absolute;
+  color: white;
+}
+
+.login > div:nth-of-type(1) {
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -32%);
+}
+
+.login > div:nth-of-type(2) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

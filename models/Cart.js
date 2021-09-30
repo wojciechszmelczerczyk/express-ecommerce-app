@@ -17,4 +17,5 @@ const cartSchema = new Schema({
 // creating model of User basing on schema
 const Cart = mongoose.model('cart', cartSchema);
 
+
 module.exports = Cart;

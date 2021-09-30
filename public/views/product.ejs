@@ -74,7 +74,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 col-xs-2">
-						<div id="fh5co-logo"><a href="/">Shop.</a></div>
+						<div id="fh5co-logo"><a href="/">PetShop.</a></div>
 					</div>
 					<div class="col-md-6 col-xs-6 text-center menu-1">
 						<ul>
@@ -109,9 +109,9 @@
 						<ul>
 							<li class="search">
 								<div class="input-group">
-									<input type="text" placeholder="Search..">
+									<input type="text" id="filtr" placeholder="Search..">
 									<span class="input-group-btn">
-										<button class="btn btn-primary" type="button"><i
+										<button href="/product?search=Leash" class="btn btn-primary" type="button"><i
 												class="icon-search"></i></button>
 									</span>
 								</div>
@@ -245,7 +245,7 @@
 					<div class="inner">
 						<p>
 							<a href="cart" id="idk" class="icon"><i class="icon-shopping-cart"></i></a>
-							<a href="single" class="icon"><i class="icon-eye"></i></a>
+							<a href="single" btn btn-primaryclass="icon"><i class="icon-eye"></i></a>
 						</p>
 					</div>
 				</div>
@@ -358,7 +358,9 @@
 						<li><a href="#">Shop</a></li>
 						<li><a href="#">Privacy</a></li>
 						<li><a href="#">Testimonials</a></li>
-						<li><a href="#">Handbook</a></li>
+					fetch('/listing', {
+				method: "GET"
+			})		<li><a href="#">Handbook</a></li>
 						<li><a href="#">Held Desk</a></li>
 					</ul>
 				</div>
@@ -438,6 +440,19 @@
 			})
 
 		}))
+	</script>
+
+	<!-- search functionality -->
+	<script>
+		// const searchBtn = document.querySelector('.btn.btn-primary')
+		const filtr = document.getElementById('filtr');
+		
+		
+		// searchBtn.addEventListener('click', () => {
+		// 	const url = new URL(`http://localhost:3000/product?search=${filtr.value}`);
+		// 	const params = new URLSearchParams(url.search);
+		
+		// })	
 	</script>
 
 
