@@ -448,17 +448,18 @@
 		let filtr = document.getElementById('filtr');
 
 		
-		searchBtn.addEventListener('click', () => {
+		searchBtn.addEventListener('click', async() => {
 			const request = new Request(`http://127.0.0.1:3000/product?search=${filtr.value}`);
-			console.log(request.url)
+			const redirect = request.url;
+			console.log(redirect)
 
-			fetch('/product', {
-				method:"GET",
-				redirect: request.url
-				
-			})
-			// clear input after search
+			const data = await fetch('/product')
+
 			filtr.value = "";
+
+			if(data.status===200){
+				location.assign(redirect)
+			}
 			
 		})	
 	</script>

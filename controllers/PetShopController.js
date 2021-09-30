@@ -43,7 +43,6 @@ const getProducts = async function (req, res) {
       user_id: user.id,
     }); // number of orders in cart (for specific user with unique id).
     //Passed to EJS with length property to display number of products in cart
-
     res.render(path.join(__dirname, "../public/views", "filterProducts"), {
       filteredProduct,
       orderNumber,
