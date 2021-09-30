@@ -111,7 +111,7 @@
 								<div class="input-group">
 									<input type="text" id="filtr" placeholder="Search..">
 									<span class="input-group-btn">
-										<button href="/product?search=Leash" class="btn btn-primary" type="button"><i
+										<button class="btn btn-primary" type="button"><i
 												class="icon-search"></i></button>
 									</span>
 								</div>
@@ -444,15 +444,23 @@
 
 	<!-- search functionality -->
 	<script>
-		// const searchBtn = document.querySelector('.btn.btn-primary')
-		const filtr = document.getElementById('filtr');
+		const searchBtn = document.querySelector('.btn.btn-primary')
+		let filtr = document.getElementById('filtr');
+
 		
-		
-		// searchBtn.addEventListener('click', () => {
-		// 	const url = new URL(`http://localhost:3000/product?search=${filtr.value}`);
-		// 	const params = new URLSearchParams(url.search);
-		
-		// })	
+		searchBtn.addEventListener('click', () => {
+			const request = new Request(`http://127.0.0.1:3000/product?search=${filtr.value}`);
+			console.log(request.url)
+
+			fetch('/product', {
+				method:"GET",
+				redirect: request.url
+				
+			})
+			// clear input after search
+			filtr.value = "";
+			
+		})	
 	</script>
 
 
